@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>User Profile</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/userList/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/userList/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/userList/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/userList/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/userList/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/userList/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/userList/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/userList/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table id="user_table" action="/editprofile" method="POST">
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Id</th>
+								<th class="column2">User Name</th>
+								<th class="column3">Password</th>
+								<th class="column4">Email</th>
+								<th class="column5">Phone Number</th>
+								<th class="column6">Address</th>
+								<th class="column7"><a th:href="@{/addnew}">New User</a></th>
+
+							</tr>
+						</thead>
+						<tbody >
+								<tr th:each="user : ${list}">
+									<td id="id" th:text="${user.getId()}"></td>
+									<td th:text="${user.getUsername()}"></td>
+									<td th:text="${user.getPassword()}"></td>
+									<td th:text="${user.getEmail()}"></td>
+									<td th:text="${user.getPhoneNumber()}"></td>
+									<td th:text="${user.getAddress()}"></td>
+									<td> <a id="edit-button" th:href="@{/edit/user/{id}(id=${user.getId()})}">Edit</a> | <a id="delete-button" th:href="@{/remove/user/{id}(id=${user.getId()})}">Delete</a></td>
+							
+								</tr>
+								 
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+<!--===============================================================================================-->	
+	<script src="/userList/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/userList/vendor/bootstrap/js/popper.js"></script>
+	<script src="/userList/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/userList/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/userList/js/main.js"></script>
+	
+<!-- 
+ 	<script type="text/javascript" >  	
+    	$("#delete-button").click(function(){
+    		if(corfirm(Are you sure?)){
+    			var id = $("#id").val();
+    			$.ajax({
+    				type: "POST"
+                    url: "http://localhost:8081/delete/user/"+id,
+                    data: id,
+                    method: "DELETE",
+                    success: function(){
+                        console.log("sucess");
+                    }
+                	error: function () {
+                		console.log("error");
+                	}
+                });
+    		}
+    		else{
+    			return false;
+    		}
+            console.log(url);
+            
+        });
+    </script>
+ -->
+	
+
+</body>
+</html>
